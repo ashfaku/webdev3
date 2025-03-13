@@ -27,6 +27,35 @@ class App extends Component {
       }
     };
   }
+  componentDidMount() {
+    fetch("https://johnnylaicode.github.io/api/credits.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        for (let i = 0; i < data.length; i++) {
+          console.log(data[i]);
+        }
+      })
+      .catch((error) => {
+        console.log("Error");
+      });
+  }
+
+  addCredit = (newCredit) => {
+    this.setState((prevState) => ({
+      creditList: [...prevState.creditList, newCredit]
+    }));    
+  };
+  addDebit = (newDebit) => {
+    this.setState((prevState) => ({
+      debitList: [...prevState.debitList, newDebit]
+    }));
+    
+  };
 
   // Update state's currentUser (userName) after "Log In" button is clicked
   mockLogIn = (logInInfo) => {  
