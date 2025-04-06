@@ -21,25 +21,39 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("https://johnnylaicode.github.io/api/credits.json")
-      .then(res => res.json())
-      .then(credits => {
-        const totalCredits = credits.reduce((sum, credit) => sum + credit.amount, 0);
-        this.setState({
-          creditList: credits,
-          accountBalance: totalCredits.toFixed(2)  // Initially set balance to total credits
-        });
-      })
-      .catch(error => console.log("Error fetching credits:", error));
+    Promise.all([
+      fetch("https://johnnylaicode.github.io/api/credits.json").then(res => res.json()),
+      fetch("https://johnnylaicode.github.io/api/debits.json").then(res => res.json())
+    ])
+    .then(([credits, debits]) => {
+      const totalCredits = credits.reduce((sum, credit) => sum + credit.amount, 0);
+      const totalDebits = debits.reduce((sum, debit) => sum + debit.amount, 0);
+      console.log(credits);
+      this.setState(prevState => ({
+        creditList: credits,
+        debitList: debits,
+        accountBalance: (prevState.accountBalance + totalCredits - totalDebits).toFixed(2),
+      }));
+    })
+    .catch(error => console.log("Error fetching data:", error));
   }
 
-  addCredit = (newCredit) => {
+  addCredit = (newCredit, desc) => {
     this.setState(prevState => {
       const updatedCredits = [...prevState.creditList, newCredit];
-      const updatedBalance = (parseFloat(prevState.accountBalance) + parseFloat(newCredit.amount)).toFixed(2);
+      console.log(updatedCredits);
+      const updatedBalance = prevState.accountBalance + newCredit.amount;
       return { creditList: updatedCredits, accountBalance: updatedBalance };
     });
   };
+  
+  addDebit = (newDebit) => { 
+    this.setState(prevState => {
+      const updatedDebits = [...prevState.debitList, newDebit];
+      const updatedBalance = prevState.accountBalance - newDebit;
+      return { debitList: updatedDebits, accountBalance: updatedBalance };
+    });
+  }
 
   //write a addDebit function, and do something similar to what I did with addCredit, and manipulate the State that held the JSON for the fetched Debit's API data
   mockLogIn = (logInInfo) => {  

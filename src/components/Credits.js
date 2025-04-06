@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Credits = (props) => {
+
+  useEffect(() => {
+    document.title = "Credits";
+  }, []); 
+
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
 
@@ -11,7 +16,7 @@ const Credits = (props) => {
       id: Math.random(),
       description,
       amount: parseFloat(amount).toFixed(2),
-      date: new Date().toISOString().split("T")[0],
+      date: new Date().toISOString()//.split("T")[0],
     };
     props.addCredit(newCredit);
     setDescription("");
