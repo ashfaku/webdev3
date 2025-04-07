@@ -53,7 +53,6 @@ class App extends Component {
     });
   }
 
-  //write a addDebit function, and do something similar to what I did with addCredit, and manipulate the State that held the JSON for the fetched Debit's API data
   mockLogIn = (logInInfo) => {  
     const newUser = { ...this.state.currentUser };
     newUser.userName = logInInfo.userName;
