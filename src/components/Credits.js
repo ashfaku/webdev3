@@ -33,8 +33,8 @@ const Credits = (props) => {
         ))}
       </ul>
       <form onSubmit={submitCredit}>
-        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" required />
-        <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Amount" step="0.01" required />
+        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Enter description" required />
+        <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount" step="0.01" required />
         <button type="submit">Add Credit</button>
       </form>
       <br />
