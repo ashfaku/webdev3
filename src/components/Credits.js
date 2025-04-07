@@ -29,7 +29,7 @@ const Credits = (props) => {
       <div>Account Balance: {props.accountBalance}</div>
       <ul>
         {props.credits.map((credit) => (
-          <li key={credit.id}>{credit.amount} - {credit.description} - {credit.date.split("T")[0]}</li>
+          <li style={{listStyleType: 'none'}} key={credit.id}>{credit.amount} - {credit.description} - {credit.date.split("T")[0]}</li>
         ))}
       </ul>
       <form onSubmit={submitCredit}>
