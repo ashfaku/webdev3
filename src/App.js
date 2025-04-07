@@ -62,7 +62,7 @@ class App extends Component {
 
   render() {  
     return (
-      <Router basename="/bank-of-react-starter-code">
+      <Router basename="/webdev3">
         <div>
           <Route exact path="/" render={() => <Home accountBalance={this.state.accountBalance} />} />
           <Route exact path="/userProfile" render={() => <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />} />
