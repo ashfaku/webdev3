@@ -43,15 +43,6 @@ a:hover {
   font-weight: bold;
 }
 
-/* Header image */
-img {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 10px;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
 /* Button styling */
 button {
   background-color: #4b0082;
@@ -79,3 +70,16 @@ button:hover {
     font-size: 2rem;
   }
 }
+
+/* ------------------------------------------ */
+/* React logo */
+/* ------------------------------------------ */
+.bank-logo {
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
